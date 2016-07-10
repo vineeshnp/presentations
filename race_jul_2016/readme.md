@@ -47,7 +47,7 @@ some pre requirements are there for this hands on.
 * You should have a Windows (7 or higher), Linux(Ubuntu preferred), Mac machine
 * Your favorite code editor ([Atom](https://atom.io/) or
 [Sublime](https://www.sublimetext.com/) preferred)
-* Latest version of (NodeJS)[https://nodejs.org/en/]
+* Latest version of [NodeJS](https://nodejs.org/en/)
 * [git](https://git-scm.com/)  
 
 In order to test your installation run following in your command line(bash) or
@@ -98,5 +98,7 @@ explore.
 Feel free to ping me
 
 [@vineeshvalsalan](https://twitter.com/vineeshvalsalan)
-[FaceBook](https://fb.com/vineeshvalsalan)
-[Mobile](+91 9446908898)
+
+[fb](https://fb.com/vineeshvalsalan)
+
+Whatsapp +91 9446908898
