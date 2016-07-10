@@ -44,7 +44,7 @@ some pre requirements are there for this hands on.
 
 ### Mandatory tools
 
-* You should have a Windows (7 or higher), Linux(Ubuntu preferred), Mac machine
+* You should have a Windows (7 or higher), Linux(Ubuntu preferred) or Mac machine
 * Your favorite code editor ([Atom](https://atom.io/) or
 [Sublime](https://www.sublimetext.com/) preferred)
 * Latest version of [NodeJS](https://nodejs.org/en/)
