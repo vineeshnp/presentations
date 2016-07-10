@@ -22,6 +22,7 @@ development using JS.
  * A look into next generation scripting ES6 and TypeScript
  * What are JSON objects and REST API's
  * What is noSQL database
+ * What is git and version control
  * What are some of the JS frameworks / libraries we use today.
  * How we create a mobile app with using JS and Why?
  * How we create a server with NodeJS and Why?
@@ -47,6 +48,7 @@ some pre requirements are there for this hands on.
 * Your favorite code editor ([Atom](https://atom.io/) or
 [Sublime](https://www.sublimetext.com/) preferred)
 * Latest version of (NodeJS)[https://nodejs.org/en/]
+* [git](https://git-scm.com/)  
 
 In order to test your installation run following in your command line(bash) or
 cmd(DOS)
