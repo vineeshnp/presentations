@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ECMA 6</title>
+
+		<meta name="description" content="Javascript on web, mobile, server and desktop">
+		<meta name="author" content="Vineesh N P">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+    <div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+        <section>
+          <a href="#" class="navigate-down">
+            <img width="150" height="150" data-src="./img/es6.png" alt="JS Logo">
+          </a>
+          <h1>ECMA6 / ES6</h1>
+          <h3>The next JavaScript</h3>
+          <p>
+            <small>by <a href="http://fragmentyard.com">Vineesh N P</a> / <a href="http://twitter.com/vineeshvalsalan">@vineeshvalsalan</a></small>
+          </p>
+        </section>
+
+				<section data-transition="fade" data-background-transition="convex">
+          <h2>JavaScript</h2>
+          <p>Devloped by Brendan Eich in 1995</p>
+          <p>Appeared on Netscape Navigator 2.0</p>
+          <p>Submitted to ECMA in 1996</p>
+					<p>ActionScript and JScript has derrived from this</p>
+        </section>
+				<section data-transition="fade" data-background="green" data-background-transition="convex">
+          <h2>Versions</h2>
+          <p>ES4  2007</p>
+          <p>ES5 2009</p>
+          <p>ES6 2013</p>
+        </section>
+        <section>
+          <section>
+            <h2>Where can I test ES6</h2>
+            <p class="fragment fade-down ">babel</p>
+            <p class="fragment fade-right"> Its a transpiler which converts es6 to es5</p>
+          </section>
+					<section>
+						<h2>Lets take a look at some features</h2>
+						<p>through example</p>
+					</section>
+				</section>
+
+				<section data-transition="concave" data-background="#E0E0E0" data-background-transition="convex">
+          <section>
+            <h2>CONST</h2>
+            <pre>
+							<code class="hljs" data-trim contenteditable >
+const pi = '3.14';
+pi = 3.14159265359 //error you can not change the value of constant
+							</code><pre>
+          </section>
+					<section>
+						<h2>LET</h2>
+            <p>Enables block scoping</p>
+						<p><pre>
+							<code class="hljs" data-trim contenteditable >
+(function(flag){
+if(flag){
+  let x = 10
+  console.log(x) //x is 10
+}
+console.log(x) // x is undefined
+})
+							</code><pre></p>
+					</section>
+					<section>
+						<h2>Inheritance</h2>
+            <p><pre>
+              <code class="hljs" data-trim contenteditable >
+class Vehicle {
+
+  constructor (name, type) {
+    this.name = name;
+    this.type = type;
+  }
+
+  getName () {
+    return this.name;
+  }
+
+  getType () {
+    return this.type;
+  }
+
+}
+class Car extends Vehicle {
+
+  constructor (name) {
+    super(name, 'car');
+  }
+
+  getName () {
+    return 'It is a car: ' + super.getName();
+  }
+
+}
+let car = new Car('Tesla');
+console.log(car.getName()); // It is a car: Tesla
+console.log(car.getType()); // car
+              </code><pre></p>
+            </section>
+
+					<section>
+						<h2>Better itrations</h2>
+
+							<p>lets forget for(i ; i < blah ; i ++)</p>
+						<p><pre>
+							<code class="hljs" data-trim contenteditable >
+var planets = ['Mercury', 'Venus', 'Earth', 'Mars'];
+
+planets.forEach(function(planet){
+  console.log(planet)
+})
+//or
+
+for(var planet in planets){
+  console.log(planet)
+}
+							</code><pre></p>
+
+					</section>
+					<section>
+							<h2>Fat Arrows</h2>
+
+								<p>Writing functions</p>
+							<p><pre>
+								<code class="hljs" data-trim contenteditable >
+function myFunction(){
+  console.log("hello wolrd!")
+}
+
+() => {
+  console.log("Hello world!")
+}
+
+var myFunction = function(){
+  console.log("Hello world!")
+}
+
+var myFunction = () => {
+  console.log("Hello world")
+}
+								</code><pre></p>
+						</section>
+						<section>
+								<h2>With parameters</h2>
+								<p><pre>
+									<code class="hljs" data-trim contenteditable >
+function sum(a, b){
+  return a+b;
+}
+
+var sum = (a,b) => {
+  return a+b
+}
+
+var sum = (a, b) => a+b //automatically implies return
+									</code><pre></p>
+							</section>
+              <section>
+    						<h2>set and get</h2>
+                <p>Enables block scoping</p>
+    						<p><pre>
+					         <code class="hljs" data-trim contenteditable >
+class Car {
+  constructor (name) {
+    this._name = name;
+  }
+
+  set name (name) {
+    this._name = name;
+  }
+
+  get name () {
+    return this._name;
+  }
+}
+let car = new Car('Tesla');
+console.log(car.name); // Tesla
+car.name = 'BMW';
+console.log(car.name); // BMW
+  							</code><pre></p>
+    					</section>
+							<section>
+								<h3>Apart from this</h3>
+								<p>Default function parameter</p>
+                <p>collections</p>
+                <p>maps , its a kind of key value pair storing</p>
+                <p>modules, export and import </p>
+							</section>
+
+        </section>
+
+        <section data-transition="concave" data-background="#BF360C" data-background-transition="convex">
+          <h2>Easy?</h2>
+
+        </section>
+
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+  </html>
