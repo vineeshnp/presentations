@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>NodeJS Game Backend</title>
+
+		<meta name="description" content="Writing a game backend from scratch using node js">
+		<meta name="author" content="Vineesh N P">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Node Game</h1>
+					<h3>Writing a simple nodejs game backend.</h3>
+					<p>
+						<small>With a case study of Chess.</small>
+					</p>
+					<aside class="notes">
+						* We will be talking about game backend.<br>
+						* Nevertheless the principles could also be used in developing <br>
+						  Other platforms like chat application, etc
+					</aside>
+				</section>
+
+				<section data-transition="convex" data-background-transition="concave">
+					<h2>About Me</h2>
+					<p>Vineesh Narikutty Pacha</p>
+					<img src data-src="img/me.jpg" width="300" height="300"/>
+					<p>
+						<small>
+						Backend Developer @ TechJini<br>
+						NodeJs and Python
+						</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Game Backend</h2>
+					<p>What game backend is supposed to do?</p>
+					<p>Existing game backend languages.</p>
+					<aside class="notes">
+						* Python <br>
+						* C, C++ <br>
+						* eg: Unreal using c++ <br>
+						* <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_game_engines">Reference</a>
+					</aside>
+				</section>
+				<section>
+					<h2>Sockets</h2>
+					<p>What, Why, When ?</p>
+					<p>REST vs Sockets</p>
+					<br>
+					<a href="#" class="">
+						<img width="350" height="300" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/French-power-socket.jpg/800px-French-power-socket.jpg">
+					</a>
+					<aside class="notes">
+						* Explain the pipe based socket model <br>
+						* Why and When : For realtime connectivity, eg: Chat application <br>
+						* Socket's events
+					</aside>
+				</section>
+
+				<section>
+					<h2>Socket.io</h2>
+					<p>What is websocket?</p>
+					<p>Why Socket.io</p>
+					<br>
+					<a href="#" class="">
+						<img width="40%" height="40%" data-src="https://www.websocket.org/img/websocket-architecture.jpg">
+					</a>
+					<aside class="notes">
+						* Websocket is actually a protocol developed for realtime web development. <br>
+						* Works ontop of TCP. <br>
+						* Few words on initial connection (optional). <br>
+						* Why Socket.io : It takes away the hardwork we need to do with plain sockets. <br>
+						* Examples will be discussed in the coming part.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Chess</h2>
+					<p>Case study of writing chess backend using NodeJS</p>
+					<a href="#" class="">
+						<img width="40%" height="40%" data-src="https://upload.wikimedia.org/wikipedia/commons/6/6f/ChessSet.jpg">
+					</a>
+				</section>
+
+				<section>
+					<h2>Architechure : Simple</h2>
+					<a href="#" class="">
+						<img width="40%" height="40%" data-src="https://www.websocket.org/img/websocket-architecture.jpg">
+					</a>
+					<aside class="notes">
+						* Briefly Explain how the Architechure Works <br>
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h2>Game State</h2>
+						<p>
+							<ul>
+								<li>Game state is a snapshot of the current game.</li>
+								<li>game state is to be designed with entire game flow in consideration</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							* What is a gamestate? <br>
+							* What are components of gamestate? <br>
+							* How to write a game state? <br>
+							* An example gamestate for chess game.
+							* Explain about PGN
+							* Portable Game Notation (PGN) is a plain text computer-processible format for recording chess games (both the moves and related data), supported by many chess programs. 
+						</aside>
+					</section>
+
+					<section>
+						<h2>Sample Game State</h2>
+						<pre><code class="hljs" data-trim contenteditable>
+gameState = {
+	players: {
+		p1 : {
+			...
+		},
+		p2 : {
+			...
+		}
+	},
+	state : {
+		board : [],
+		turn : []
+	},
+	winner : null,
+	turn : null
+}								
+						</code></pre>
+						<aside class="notes">
+							* possible contents of players
+							* arbitrary notations that could be used to reprecent the board
+							* winner will be declared when checkmate happens
+							* turn says, who is suppose to make the current move
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>State Processing Model</h2>
+					<a href="">
+						<img width="45%" height="45%" data-src="./img/state-processing.png" alt="Up arrow">
+					</a>
+					<aside class="notes">
+						* This is applicable in case of most board / puzzle / cards game.
+						* When more than one player can make any interaction, queue mechanism is to be added.
+						* Its easy to do horizontal scale with this model.
+					</aside>
+				</section>
+				<section>
+					<section>
+						<h2>Code Time</h2>
+						<p>Lets take a look at some code for sockets</p>
+						<aside class="notes">
+							* This is applicable in case of most board / puzzle / cards game.
+							* When more than one player can make any interaction, queue mechanism is to be added.
+							* Its easy to do horizontal scale with this model.
+						</aside>
+					</section>
+					<section>
+							<h2>Socket Backend</h2>
+							<pre><code class="hljs" data-trim contenteditable>
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const port = process.env.PORT || 3000;
+
+io.on('connection', (socket) => {
+	socket.on('chat message', function(msg){
+	io.emit('chat message', msg);
+	socket.to({{socketId}}).emit('chat message', msg);
+	});
+});
+
+http.listen(port, () => {
+	console.log('listening on *:' + port);
+});				
+							</code></pre>
+							<aside class="notes">
+								* Briefly explain the code
+							</aside>
+						</section>
+
+						<section>
+								<h2>Socket Backend</h2>
+								<pre><code class="hljs" data-trim contenteditable>
+&lt;script&gt; src="https://cdn.socket.io/socket.io-1.2.0.js">&lt;/script&gt;							
+&lt;script&gt;
+	$(function () {
+		var socket = io();
+		/*
+		 * On some event trigger below code
+		 */
+		socket.emit('chat message', $('#m').val());
+
+		socket.on('chat message', function(msg){
+			console.log(msg)
+		});
+	});
+&lt;/script&gt;	
+								</code></pre>
+								<aside class="notes">
+									* Briefly explain the code <br>
+									* <a href="https://github.com/socketio/chat-example">Sample app</a>
+								</aside>
+							</section>
+				</section>
+
+				<section>
+						<h2>Rooms</h2>
+						<ul>
+							<li>Rooms are similar to groups in chat</li>
+							<li>Most board games are built on this concept</li>
+						</ul>
+						<aside class="notes">
+							* In chess if 3rd person needs to watch the game <br>
+							Its better to keep it as a room <br>
+							* Creating rooms will be covered in later part
+						</aside>
+				</section>
+
+				<section>
+						<h2>Implementing Actions</h2>
+						<ul>
+							<li>Defining methods for each actions</li>
+							<li>Starting the game</li>
+							<li>Game moves</li>
+							<li>Handling conflicts, like when a player makes a move he is not supposed to make.</li>
+							<li>Winner declaration, and resetting the game board.</li>
+
+						</ul>
+						<aside class="notes">
+							* Briefly explain each steps <br>
+							* If needed insert few more slides
+						</aside>
+				</section>
+				<section>
+					<h2>Move Validation</h2>
+					<p>
+						Validation of moves could be done with help of libraries.
+					</p>
+					<aside class="notes">
+						* Put the importance of using the library <br>
+						* Walk through this <a target="_blank" href="https://github.com/jhlywa/chess.js/">source</a>
+					</aside>
+				</section>
+
+				<section>
+						<section>
+							<h2>Code Time</h2>
+							<p>Lets take a look at few more code for sockets</p>
+							<aside class="notes">
+							</aside>
+						</section>
+						<section>
+								<h2>Joining Room</h2>
+								<pre><code class="hljs" data-trim contenteditable>
+/**
+ * Front end code
+ */
+io.on('connection', (socket) => {
+
+	/**
+	 * During some action
+	 */
+	socket.join('room1');
+
+	/**
+	 * Inorder to leave a room
+	 */
+	socket.leave('room1');
+});	
+
+								</code></pre>
+								<aside class="notes">
+									* Briefly explain the code
+								</aside>
+							</section>
+	
+							<section>
+									<h2>Emitting to a room</h2>
+									<pre><code class="hljs" data-trim contenteditable>
+/**
+ * Backend code
+ */
+io.to('room1').emit('data', {data : 0}); 
+
+/**
+ * Front end, on a subscribed client
+ */									
+ io.on('connection', (socket) => {
+	socket.on('data', (msg) => {
+	   console.log(msg); //{data : 0}
+	});
+});
+										</code></pre>
+									<aside class="notes">
+										* Briefly explain the code <br>
+										* Explain the concept of pipes created by socket join
+									</aside>
+							</section>
+
+							<section>
+									<h2>Move validation with library</h2>
+									<pre><code class="hljs" data-trim contenteditable>
+	move validation code goes here TODO:
+									</code></pre>
+									<aside class="notes">
+										* Briefly explain the code <br>
+										* <a href="https://github.com/socketio/chat-example">Sample app</a>
+									</aside>
+							</section>
+					</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					
+					
+					<section>
+						<h2>Scaling</h2>
+						
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section>
+							<p>
+							Vertical scaling and Horizontal scaling.
+							Socket scaling using broker.
+							game-state scaling using cache servers.
+							Message queues.
+							Reverse proxy using nginx.
+							</p>
+							<aside class="notes">
+								TODO: Add detailed notes
+							</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>Architechure Complex</h2>
+					<p>
+						TODO: An image of complex Architechure
+					</p>
+					<aside class="notes">
+						TODO: Add detailed notes
+					</aside>
+				</section>
+
+				<section>
+					<h2>Challenges</h2>
+					<ul>
+						<li>Node is not designed for game backend.</li>
+						<li>Handling computations on event loop.</li>
+						<li>Importance of doing CPU intensive tasks using golang/rust.</li>
+						<li>Need of timers.</li>
+					</ul>
+					<aside class="notes">
+						TODO: Add detailed notes
+					</aside>
+				</section>
+
+				<section>
+					<h2>Suggestions</h2>
+					<ul>
+						<li>forget es5 approach.</li>
+						<li>es6 / typescript will be lifesavers.</li>
+						<li>Security with tokens</li>
+						<li>rather than writing from scratch, you could use frameworks.[But don't expect a long term support]</li>
+						<li>do profiling to find out time consuming functions.</li>
+						<li>For production use game engines.</li>
+					</ul>	
+				</section>
+				<section data-markdown>
+						## Thank You
+
+						# Q & A
+
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/search/search.js', async: true },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
