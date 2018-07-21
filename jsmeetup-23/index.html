@@ -56,19 +56,21 @@
 				<section data-transition="convex" data-background-transition="concave">
 					<h2>About Me</h2>
 					<p>Vineesh Narikutty Pacha</p>
-					<img src data-src="img/me.jpg" width="300" height="300"/>
+					<img src data-src="img/profile.png" width="200" height="200"/>
 					<p>
 						<small>
-						Backend Developer @ TechJini<br>
-						NodeJs and Python
+						Backend Developer @ TechJini.<br>
+						Codes NodeJs and Python. <br>
+						Loves Rust, Golang and Elixir. <br>
+
 						</small>
 					</p>
 				</section>
 
 				<section>
 					<h2>Game Backend</h2>
-					<p>What game backend is supposed to do?</p>
-					<p>Existing game backend languages.</p>
+					<p>What is game backend?</p>
+					<p>What languages generally we use to build game backend?</p>
 					<aside class="notes">
 						* Python <br>
 						* C, C++ <br>
@@ -116,7 +118,7 @@
 					</a>
 					<aside class="notes">
 						* For people not aware of chess. <br>
-						* Chess is a two player board game which is belived to be indian origin.<br>
+						* Chess is a two player board game which is believed to be indian origin.<br>
 						* Board is of 64 tables, 32 white and 32 black and 32 pices<br>
 						* Each player will get 16 pices, a king, a queen, two bishops, knight and rook, and 8 pawns<br>
 						* Each pice have certain directional rules, and a pice can take opponent pice with the rule <br>
@@ -125,10 +127,10 @@
 				</section>
 
 				<section>
-					<h2>Architechure : Simple</h2>	
+					<h2>Architecture : Simple</h2>	
 					<img src="./img/architechure.svg" />
 					<aside class="notes">
-						* Briefly Explain how the Architechure Works <br>
+						* Briefly Explain how the Architecture Works <br>
 					</aside>
 				</section>
 
@@ -173,7 +175,7 @@ gameState = {
 						</code></pre>
 						<aside class="notes">
 							* possible contents of players
-							* arbitrary notations that could be used to reprecent the board
+							* arbitrary notations that could be used to represent the board
 							* winner will be declared when checkmate happens
 							* turn says, who is suppose to make the current move
 						</aside>
@@ -361,7 +363,7 @@ io.to('room1').emit('data', {data : 0});
 									<aside class="notes">
 										* Writing code from scratch if great, but that take enormous time. <br>
 										* This library will help you to write chess game quickly <br>
-										* This approch will let us write any card or board based games <br>
+										* This approach will let us write any card or board based games <br>
 										* Which means you could write snake and ladder, checkers, ludo... <br>
 									</aside>
 							</section>
@@ -391,7 +393,7 @@ console.log(chess.ascii());
 										* This is an example for a single game.
 										* During the socket implementation, use the room id as the instance name of class chess.
 										* Now any incoming action could be validated using this instance.
-										* The instance is in memory, so for clustering a different Architechure is to be followed.
+										* The instance is in memory, so for clustering a different Architecture is to be followed.
 									</aside>
 							</section>
 
@@ -401,7 +403,7 @@ console.log(chess.ascii());
 /**
  * moves can be triggered in different ways
  */
-chess.move('e4'); // Standard algibraic notation
+chess.move('e4'); // Standard algebraic notation
 chess.move({from : 'e7', to : 'e5'}) // or with more readable way.
 chess.move('Nh3'); // Moves the night to h3
 chess.move({from : 'f8', to : 'a3' }) // Moving the bishop
@@ -501,7 +503,12 @@ console.log(chess.in_stalemate());
 							Reverse proxy using nginx.<br>
 							</p>
 							<aside class="notes">
-								TODO: Add detailed notes
+								* Vertical scaling is done by adding more resource to a single system. <br>
+								* Horizontal scaling is done by distributing load into multiple workers. <br>
+								* For horizontal scale, we need a centralized game-state store, viz the cache <br>
+								* To enable socket connected to different servers to communicate, we need message-broker <br>
+								* Message queues could be used to ensure sequential execution and delayed timers. <br>
+								* For any system with multiple cores, its good to use cluster and ngnix with reverse proxy to ensure all cores are used.<br>
 							</aside>
 					</section>
 				</section>
@@ -525,7 +532,12 @@ console.log(chess.in_stalemate());
 						<li>Need of timers.</li>
 					</ul>
 					<aside class="notes">
-						TODO: Add detailed notes
+						* Game involves lot of computation and node does not do well in computational intensive tasks,<br>
+						* But the latest version of node have workers to do the tasks, viz a great thing<br>
+						* Rust and golang could do computations much faster, so a rust executable script <br>
+						  can be called as an io operation and load on event loop can be minimized.<br>
+						* Real game use timers a lot, some cases its okay to store timestamp in database <br>
+						  other cases we might need timer servers, to trigger delayed actions.
 					</aside>
 				</section>
 
@@ -539,11 +551,25 @@ console.log(chess.in_stalemate());
 						<li>do profiling to find out time consuming functions.</li>
 						<li>For production use game engines.</li>
 					</ul>	
+					<aside class="notes">
+						* es6 made js more of a kind of good language<br>
+						* each socket connections integrity is to be validated, jwt is a good option<br>
+						* Using frameworks is a great option, but LTS isn't guaranteed.<br>
+						* Profiling with google chrome dev tools, let us know which function is throttling.<br>
+						* For production, game engines are always advisable, because that takes care of the <br>
+						plumbing work of components, we only have to worry about logical parts.
+					</aside>
 				</section>
 				<section data-markdown>
 						## Thank You
 
 						# Q & A
+
+				</section>
+				<section data-markdown>
+						#### മാതാ &nbsp; പിതാ &nbsp; ഗുരുഃ &nbsp; ദൈവം
+
+						### माता &nbsp; पिता &nbsp; गुरु &nbsp; देवम् 
 
 				</section>
 			</div>
