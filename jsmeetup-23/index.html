@@ -220,7 +220,7 @@ http.listen(port, () => {
 						</section>
 
 						<section>
-								<h2>Socket Backend</h2>
+								<h2>Socket Front End</h2>
 								<pre><code class="hljs" data-trim contenteditable>
 &lt;script&gt; src="https://cdn.socket.io/socket.io-1.2.0.js">&lt;/script&gt;							
 &lt;script&gt;
@@ -258,28 +258,33 @@ http.listen(port, () => {
 				</section>
 
 				<section>
-						<h2>Implementing Actions</h2>
+						<h2>Game Actions</h2>
 						<ul>
-							<li>Defining methods for each actions</li>
-							<li>Starting the game</li>
-							<li>Game moves</li>
-							<li>Handling conflicts, like when a player makes a move he is not supposed to make.</li>
+							<li>Create an instance of gameEngineClass.</li>
+							<li>instance is responsible to validate and performs action</li>
+							<li>instance will have state, how ever, state could be maintained with game-state.</li>
 							<li>Winner declaration, and resetting the game board.</li>
-
 						</ul>
 						<aside class="notes">
-							* Briefly explain each steps <br>
-							* If needed insert few more slides
+							* Each valid action from client will make changes to the game state.
 						</aside>
 				</section>
+				<section data-markdown>
+					## ♔ Chess.js ♚
+					
+					* We could write it from scratch. <br>
+					* But it may take some time to do so. <br>
+					* In fact every live game we see, its all written from scratch. <br>
+					* Here we will do this using [chess.js](https://github.com/jhlywa/chess.js/) .
+	
+				</section>
+
 				<section>
-					<h2>Move Validation</h2>
-					<p>
-						Validation of moves could be done with help of libraries.
-					</p>
+					<h2>Flow</h2>
+					<img  data-src="./img/game-flow.svg">
+						
 					<aside class="notes">
-						* Put the importance of using the library <br>
-						* Walk through this <a target="_blank" href="https://github.com/jhlywa/chess.js/">source</a>
+							
 					</aside>
 				</section>
 
@@ -334,18 +339,138 @@ io.to('room1').emit('data', {data : 0});
 										</code></pre>
 									<aside class="notes">
 										* Briefly explain the code <br>
-										* Explain the concept of pipes created by socket join
+										* Explain the concept of pipes created by socket join <br>
+										* Try to limit to one socket connection per device. <br>
 									</aside>
 							</section>
 
 							<section>
-									<h2>Move validation with library</h2>
+									<h3> Move validation with library. </h3>
+									<p>Lets look at chess library.</p> 
+									
 									<pre><code class="hljs" data-trim contenteditable>
-	move validation code goes here TODO:
+											
+											npm install --save chess.js
 									</code></pre>
 									<aside class="notes">
-										* Briefly explain the code <br>
-										* <a href="https://github.com/socketio/chat-example">Sample app</a>
+										* Writing code from scratch if great, but that take enormous time. <br>
+										* This library will help you to write chess game quickly <br>
+										* This approch will let us write any card or board based games <br>
+										* Which means you could write snake and ladder, checkers, ludo... <br>
+									</aside>
+							</section>
+
+							<section>
+									<h3> Initiating library </h3>
+									<pre><code class="hljs" data-trim contenteditable>
+const Chess = require('chess.js').Chess;
+const chess = new Chess();
+console.log('Printing the current board state');
+console.log(chess.ascii());	
+
+/** Output */
+  +------------------------+
+8 | r  n  b  q  k  b  n  r |
+7 | p  p  p  p  p  p  p  p |
+6 | .  .  .  .  .  .  .  . |
+5 | .  .  .  .  .  .  .  . |
+4 | .  .  .  .  .  .  .  . |
+3 | .  .  .  .  .  .  .  . |
+2 | P  P  P  P  P  P  P  P |
+1 | R  N  B  Q  K  B  N  R |
+  +------------------------+
+    a  b  c  d  e  f  g  h
+									</code></pre>
+									<aside class="notes">
+										* This is an example for a single game.
+										* During the socket implementation, use the room id as the instance name of class chess.
+										* Now any incoming action could be validated using this instance.
+										* The instance is in memory, so for clustering a different Architechure is to be followed.
+									</aside>
+							</section>
+
+							<section>
+									<h3> Making moves </h3>
+									<pre><code class="hljs" data-trim contenteditable>
+/**
+ * moves can be triggered in different ways
+ */
+chess.move('e4'); // Standard algibraic notation
+chess.move({from : 'e7', to : 'e5'}) // or with more readable way.
+chess.move('Nh3'); // Moves the night to h3
+chess.move({from : 'f8', to : 'a3' }) // Moving the bishop
+									</code></pre>
+									<aside class="notes">
+										* Standard chess notation is the algebraic notation. <br>
+										* Portable Game Notation is also used(<a href="https://en.wikipedia.org/wiki/Portable_Game_Notation">WIKI</a>). <br>
+										* Discussion of above in detail might take us a bit more time, so will discuss moves in general.
+									</aside>
+							</section>
+
+							<section>
+									<h3> Validity of moves. </h3>
+									<pre><code class="hljs" data-trim contenteditable>
+/**
+ * Checking the validity of the move
+ */
+console.log('Valid move output', chess.move('b3'));
+{ 
+color: 'w', 
+from: 'b2', 
+to: 'b3', 
+flags: 'n', 
+piece: 'p', 
+san: 'b3' 
+}
+
+console.log('Invalid move output', chess.move('b2'));
+null
+									</code></pre>
+									<aside class="notes">
+									* Assumes the credibility of user to make a move is validated initially<br>	
+									</aside>
+							</section>
+
+							<section>
+									<h2> Check! ? </h2>
+									<pre><code class="hljs" data-trim contenteditable>
+/**
+ * Check if the game is in check state
+ */
+console.log(chess.in_check()); 
+// returns boolean
+
+console.log(chess.in_checkmate());
+// returns boolean
+									</code></pre>
+									<aside class="notes">
+									* If check happens the event is to be notified in front end<br>
+									* If check mate happens, game state is to be made stopped <br>
+									* The info is to be passed to the front end <br>
+									* Game can be restarted with timers or user input <br>	
+									</aside>
+							</section>
+
+							<section>
+									<h2> Further! ? </h2>
+									<p>Chess have lots of situations like.<br>
+											* Draw<br>
+											* Settlement<br>
+											* Castling, etc<br>
+									</p>
+									<pre><code class="hljs" data-trim contenteditable>
+/**
+ * Check if the game is in check state
+ */
+console.log(chess..in_draw()); 
+// returns boolean
+
+console.log(chess.in_stalemate());
+// returns boolean
+									</code></pre>
+									<aside class="notes">
+									* The library provides all these functions<br>	
+									* All we have to do is use it wisely<br>
 									</aside>
 							</section>
 					</section>
@@ -363,11 +488,11 @@ io.to('room1').emit('data', {data : 0});
 					</section>
 					<section>
 							<p>
-							Vertical scaling and Horizontal scaling.
-							Socket scaling using broker.
-							game-state scaling using cache servers.
-							Message queues.
-							Reverse proxy using nginx.
+							Vertical scaling and Horizontal scaling.<br>
+							Socket scaling using broker.<br>
+							game-state scaling using cache servers.<br>
+							Message queues.<br>
+							Reverse proxy using nginx.<br>
 							</p>
 							<aside class="notes">
 								TODO: Add detailed notes
@@ -375,7 +500,7 @@ io.to('room1').emit('data', {data : 0});
 					</section>
 				</section>
 
-				<section>
+				<!-- <section>
 					<h2>Architechure Complex</h2>
 					<p>
 						TODO: An image of complex Architechure
@@ -383,7 +508,7 @@ io.to('room1').emit('data', {data : 0});
 					<aside class="notes">
 						TODO: Add detailed notes
 					</aside>
-				</section>
+				</section> -->
 
 				<section>
 					<h2>Challenges</h2>
