@@ -52,9 +52,22 @@
 						  Other platforms like chat application, etc
 					</aside>
 				</section>
+				<section data-transition="slide-in fade-out" data-background-transition="fade-out slide-in">
+					<h2>NodeJS 🌟</h2> 
+					<h3>What is</h3>
+					<img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png"/> 
+					<aside class="notes">
+						* I hope some people might be new not js ecosystem, so lets start with a brief intro to node<br>
+						* Javascript was initially a tool for front end. <br>
+						* In 2009 Ryan Dahl was not satisfied with existing web servers <br>
+						* He tried to build a light weight web server, that uses js as language with v8 engine <br>
+						* Eventually that turned as nodejs. <br><br>
+						* Node is not a language, its a run time environment built on Javascript.
+					</aside>
+				</section>
 
 				<section data-transition="convex" data-background-transition="concave">
-					<h2>About Me</h2>
+					<h2>About Me 😊</h2>
 					<p>Vineesh Narikutty Pacha</p>
 					<img src data-src="img/profile.png" width="200" height="200"/>
 					<p>
@@ -67,8 +80,8 @@
 					</p>
 				</section>
 
-				<section>
-					<h2>Game Backend</h2>
+				<section data-transition="concave" data-background-transition="convex">
+					<h2>Game Backend  🛸</h2>
 					<p>What is game backend?</p>
 					<p>What languages generally we use to build game backend?</p>
 					<aside class="notes">
@@ -78,10 +91,10 @@
 						* <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_game_engines">Reference</a>
 					</aside>
 				</section>
-				<section>
-					<h2>Sockets</h2>
+				<section data-transition="convex" data-background-transition="concave">
+					<h2>Sockets 🔌</h2>
 					<p>What, Why, When ?</p>
-					<p>REST vs Sockets</p>
+					<p>REST vs Sockets?</p>
 					<br>
 					<a href="#" class="">
 						<img width="350" height="300" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/French-power-socket.jpg/800px-French-power-socket.jpg">
@@ -93,10 +106,10 @@
 					</aside>
 				</section>
 
-				<section>
-					<h2>Socket.io</h2>
+				<section data-transition="zoom" data-background-transition="convex">
+					<h2>Socket.io ⚡</h2>
 					<p>What is websocket?</p>
-					<p>Why Socket.io</p>
+					<p>Why socket.io?</p>
 					<br>
 					<a href="#" class="">
 						<img width="35%" height="35%" data-src="./img/socket-io.svg">
@@ -110,8 +123,8 @@
 					</aside>
 				</section>
 
-				<section>
-					<h2>Chess</h2>
+				<section data-transition="convex" data-background-transition="zoom">
+					<h2>Chess 🐎</h2>
 					<p>Case study of writing chess backend using NodeJS</p>
 					<a href="#" class="">
 						<img width="40%" height="40%" data-src="https://upload.wikimedia.org/wikipedia/commons/6/6f/ChessSet.jpg">
@@ -126,17 +139,17 @@
 					</aside>
 				</section>
 
-				<section>
-					<h2>Architecture : Simple</h2>	
+				<section data-transition="zoom" data-background-transition="fade">
+					<h2>Architecture* 🏗</h2>	
 					<img src="./img/architechure.svg" />
 					<aside class="notes">
 						* Briefly Explain how the Architecture Works <br>
 					</aside>
 				</section>
 
-				<section>
-					<section>
-						<h2>GameState</h2>
+				<section data-transition="concave" data-background-transition="convex">
+					<section data-transition="concave" data-background-transition="convex">
+						<h2>GameState 🏟</h2>
 						<p>
 							<ul>
 								<li>GameState is a snapshot of the current game.</li>
@@ -153,7 +166,7 @@
 						</aside>
 					</section>
 
-					<section>
+					<section data-transition="concave" data-background-transition="convex">
 						<h2>Sample Game State</h2>
 						<pre><code class="hljs" data-trim contenteditable>
 gameState = {
@@ -182,8 +195,8 @@ gameState = {
 					</section>
 				</section>
 
-				<section>
-					<h2>State Processing Model</h2>
+				<section data-transition="convex" data-background-transition="concave">
+					<h3>State Processing Model 🤹</h3>
 					<a href="">
 						<img width="45%" height="45%" data-src="./img/state-processing.png" alt="Up arrow">
 					</a>
@@ -193,9 +206,9 @@ gameState = {
 						* Its easy to do horizontal scale with this model.
 					</aside>
 				</section>
-				<section>
-					<section>
-						<h2>Code Time &lt;/&gt;</h2>
+				<section data-transition="convex" data-background-transition="concave">
+					<section data-transition="convex" data-background-transition="concave">
+						<h2>Code Time &lt;/&gt; 💻</h2>
 						<p>Lets look at some code for socket fundamentals.</p>
 						<aside class="notes">
 							* This is applicable in case of most board / puzzle / cards game.
@@ -203,7 +216,7 @@ gameState = {
 							* Its easy to do horizontal scale with this model.
 						</aside>
 					</section>
-					<section>
+					<section data-transition="convex" data-background-transition="concave">
 							<h2>Socket Backend</h2>
 							<pre><code class="hljs" data-trim contenteditable>
 const app = require('express')();
@@ -227,7 +240,7 @@ http.listen(port, () => {
 							</aside>
 						</section>
 
-						<section>
+						<section data-transition="convex" data-background-transition="concave">
 								<h2>Socket Front End</h2>
 								<pre><code class="hljs" data-trim contenteditable>
 &lt;script&gt; src="https://cdn.socket.io/socket.io-1.2.0.js">&lt;/script&gt;							
@@ -252,8 +265,8 @@ http.listen(port, () => {
 							</section>
 				</section>
 
-				<section>
-						<h2>Rooms</h2>
+				<section data-transition="convex" data-background-transition="concave">
+						<h2>Rooms 🚪</h2>
 						<ul>
 							<li>Rooms are similar to groups in chat</li>
 							<li>Most board games are built on this concept</li>
@@ -265,8 +278,8 @@ http.listen(port, () => {
 						</aside>
 				</section>
 
-				<section>
-						<h2>Game Actions</h2>
+				<section data-transition="convex" data-background-transition="concave">
+						<h2>Game Actions ‍🤾</h2>
 						<ul>
 							<li>Create an instance of gameEngineClass.</li>
 							<li>instance is responsible to validate and performs action</li>
@@ -277,7 +290,7 @@ http.listen(port, () => {
 							* Each valid action from client will make changes to the game state.
 						</aside>
 				</section>
-				<section data-markdown>
+				<section data-markdown data-transition="convex" data-background-transition="concave">
 					## ♔ Chess.js ♚
 					
 					* We could write it from scratch. <br>
@@ -287,8 +300,8 @@ http.listen(port, () => {
 	
 				</section>
 
-				<section>
-					<h2>Flow</h2>
+				<section data-transition="convex" data-background-transition="concave">
+					<h2>Flow 🥌</h2>
 					<img  data-src="./img/game-flow.svg">
 						
 					<aside class="notes">
@@ -296,10 +309,10 @@ http.listen(port, () => {
 					</aside>
 				</section>
 
-				<section>
-						<section>
-							<h2>Code Time</h2>
-							<p>Lets take a look at few more code for sockets</p>
+				<section data-transition="convex" data-background-transition="concave">
+						<section data-transition="convex" data-background-transition="concave">
+							<h2>Code Time &lt;/&gt; 🖥</h2>
+							<p>Lets dive to some more code!</p>
 							<aside class="notes">
 							</aside>
 						</section>
@@ -328,7 +341,7 @@ io.on('connection', (socket) => {
 								</aside>
 							</section>
 	
-							<section>
+							<section data-transition="convex" data-background-transition="concave">
 									<h2>Emitting to a room</h2>
 									<pre><code class="hljs" data-trim contenteditable>
 /**
@@ -352,7 +365,7 @@ io.to('room1').emit('data', {data : 0});
 									</aside>
 							</section>
 
-							<section>
+							<section data-transition="convex" data-background-transition="concave">
 									<h3> Move validation with library. </h3>
 									<p>Lets look at chess library.</p> 
 									
@@ -368,7 +381,7 @@ io.to('room1').emit('data', {data : 0});
 									</aside>
 							</section>
 
-							<section>
+							<section data-transition="convex" data-background-transition="concave">
 									<h3> Initiating library </h3>
 									<pre><code class="hljs" data-trim contenteditable>
 const Chess = require('chess.js').Chess;
@@ -397,7 +410,7 @@ console.log(chess.ascii());
 									</aside>
 							</section>
 
-							<section>
+							<section data-transition="convex" data-background-transition="concave">
 									<h3> Making moves </h3>
 									<pre><code class="hljs" data-trim contenteditable>
 /**
@@ -415,7 +428,7 @@ chess.move({from : 'f8', to : 'a3' }) // Moving the bishop
 									</aside>
 							</section>
 
-							<section>
+							<section data-transition="convex" data-background-transition="concave">
 									<h3> Validity of moves. </h3>
 									<pre><code class="hljs" data-trim contenteditable>
 /**
@@ -439,7 +452,7 @@ null
 									</aside>
 							</section>
 
-							<section>
+							<section data-transition="convex" data-background-transition="concave">
 									<h2> Check! ? </h2>
 									<pre><code class="hljs" data-trim contenteditable>
 /**
@@ -459,7 +472,7 @@ console.log(chess.in_checkmate());
 									</aside>
 							</section>
 
-							<section>
+							<section data-transition="convex" data-background-transition="concave">
 									<h2> Further! ? </h2>
 									<p>Chess have lots of situations like.<br>
 											* Draw<br>
@@ -484,17 +497,17 @@ console.log(chess.in_stalemate());
 					</section>
 
 				<!-- Example of nested vertical slides -->
-				<section>
+				<section data-transition="concave" data-background-transition="zoom">
 					
 					
-					<section>
-						<h2>Scaling</h2>
+					<section data-transition="concave" data-background-transition="zoom">
+						<h2>Scaling 🔥</h2>
 						
 						<aside class="notes">
 
 						</aside>
 					</section>
-					<section>
+					<section data-transition="concave" data-background-transition="zoom">
 							<p>
 							Vertical scaling and Horizontal scaling.<br>
 							Socket scaling using broker.<br>
@@ -523,8 +536,8 @@ console.log(chess.in_stalemate());
 					</aside>
 				</section> -->
 
-				<section>
-					<h2>Challenges</h2>
+				<section data-transition="concave" data-background-transition="zoom">
+					<h2>Challenges 🤸</h2>
 					<ul>
 						<li>Node is not designed for game backend.</li>
 						<li>Handling computations on event loop.</li>
@@ -541,8 +554,8 @@ console.log(chess.in_stalemate());
 					</aside>
 				</section>
 
-				<section>
-					<h2>Suggestions</h2>
+				<section data-transition="concave" data-background-transition="zoom">
+					<h2>Suggestions 🏂</h2>
 					<ul>
 						<li>forget es5 approach.</li>
 						<li>es6 / typescript will be lifesavers.</li>
@@ -560,13 +573,13 @@ console.log(chess.in_stalemate());
 						plumbing work of components, we only have to worry about logical parts.
 					</aside>
 				</section>
-				<section data-markdown>
-						## Thank You
+				<section data-markdown data-transition="concave" data-background-transition="zoom">
+						## Thank You 🧘
 
 						# Q & A
 
 				</section>
-				<section data-markdown>
+				<section data-markdown data-transition="fade" data-background-transition="zoom">
 						#### മാതാ &nbsp; പിതാ &nbsp; ഗുരുഃ &nbsp; ദൈവം
 
 						### माता &nbsp; पिता &nbsp; गुरु &nbsp; देवम् 
