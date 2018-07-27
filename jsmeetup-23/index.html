@@ -68,23 +68,23 @@
 				</section>
 
 				<section data-transition="slide-in fade-out" data-background-transition="fade-out slide-in">
-					<h2>NodeJS 🌟</h2> 
+					<h2>🌟</h2> 
 					<h3>What is</h3>
 					<img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png"/> 
 					<aside class="notes">
-						* I hope some people might be new not js ecosystem, so lets start with a brief intro to node<br>
+						* I hope some people might be new not js ecosystem, so let's start with a brief intro to node<br>
 						* Javascript was initially a tool for front end. <br>
 						* In 2009 Ryan Dahl was not satisfied with existing web servers <br>
 						* He tried to build a light weight web server, that uses js as language with v8 engine <br>
 						* Eventually that turned as nodejs. <br><br>
-						* Node is not a language, its a run time environment built on Javascript.
+						* Node is not a language, it's a run time environment built on Javascript.
 					</aside>
 				</section>
 
 				<section data-transition="concave" data-background-transition="convex">
 					<h2>Game Backend  🛸</h2>
 					<p>What is game backend?</p>
-					<p>What languages generally we use to build game backend?</p>
+					<p>Which languages generally we use to build game backend?</p>
 					<aside class="notes">
 						* Python <br>
 						* C, C++ <br>
@@ -210,7 +210,7 @@ gameState = {
 				<section data-transition="convex" data-background-transition="concave">
 					<section data-transition="convex" data-background-transition="concave">
 						<h2>Code Time &lt;/&gt; 💻</h2>
-						<p>Lets look at some code for socket fundamentals.</p>
+						<p>Let's look at some code for socket fundamentals.</p>
 						<aside class="notes">
 							* This is applicable in case of most board / puzzle / cards game.
 							* When more than one player can make any interaction, queue mechanism is to be added.
@@ -269,13 +269,13 @@ http.listen(port, () => {
 				<section data-transition="convex" data-background-transition="concave">
 						<h2>Rooms 🚪</h2>
 						<ul>
-							<li>Rooms are similar to groups in chat</li>
-							<li>Most board games are built on this concept</li>
+							<li>Rooms are similar to groups in chat.</li>
+							<li>Most board games are built on this concept.</li>
 						</ul>
 						<aside class="notes">
 							* In chess if 3rd person needs to watch the game <br>
 							Its better to keep it as a room <br>
-							* Creating rooms will be covered in later part
+							* Creating rooms will be covered in later slides.
 						</aside>
 				</section>
 
@@ -283,8 +283,8 @@ http.listen(port, () => {
 						<h2>Game Actions ‍🤾</h2>
 						<ul>
 							<li>Create an instance of gameEngineClass.</li>
-							<li>instance is responsible to validate and performs action</li>
-							<li>instance will have state, how ever, state could be maintained with game-state.</li>
+							<li>Instance is responsible to validate and performs action.</li>
+							<li>Instance will have state, how ever, state could be maintained with game-state.</li>
 							<li>Winner declaration, and resetting the game board.</li>
 						</ul>
 						<aside class="notes">
@@ -292,11 +292,11 @@ http.listen(port, () => {
 						</aside>
 				</section>
 				<section data-markdown data-transition="convex" data-background-transition="concave">
-					## ♔ Chess.js ♚
+					## Chess.js 👑
 					
 					* We could write it from scratch. <br>
 					* But it may take some time to do so. <br>
-					* In fact every live game we see, its all written from scratch. <br>
+					* In fact every live game we see, it's all written from scratch. <br>
 					* Here we will do this using [chess.js](https://github.com/jhlywa/chess.js/) .
 	
 				</section>
@@ -313,7 +313,7 @@ http.listen(port, () => {
 				<section data-transition="convex" data-background-transition="concave">
 						<section data-transition="convex" data-background-transition="concave">
 							<h2>Code Time &lt;/&gt; 🖥</h2>
-							<p>Lets dive to some more code!</p>
+							<p>Let's dive to some more code!</p>
 							<aside class="notes">
 							</aside>
 						</section>
@@ -368,7 +368,7 @@ io.to('room1').emit('data', {data : 0});
 
 							<section data-transition="convex" data-background-transition="concave">
 									<h3> Move validation with library.  📚</h3>
-									<p>Lets look at chess library.</p> 
+									<p>Let's look at chess library.</p> 
 									
 									<pre><code class="hljs" data-trim contenteditable>
 											
@@ -509,20 +509,20 @@ console.log(chess.in_stalemate());
 						</aside>
 					</section>
 					<section data-transition="concave" data-background-transition="zoom">
-							<p>
-							Vertical scaling and Horizontal scaling.<br>
-							Socket scaling using broker.<br>
-							game-state scaling using cache servers.<br>
-							Message queues.<br>
-							Reverse proxy using nginx.<br>
-							</p>
+							<ul>
+								<li>Vertical scaling and Horizontal scaling.</li>
+								<li>Socket scaling using broker.</li>
+								<li>Game-state scaling using cache servers.</li>
+								<li>Message queues.</li>
+								<li>Reverse proxy using nginx.</li>
+							</ul>
 							<aside class="notes">
 								* Vertical scaling is done by adding more resource to a single system. <br>
 								* Horizontal scaling is done by distributing load into multiple workers. <br>
 								* For horizontal scale, we need a centralized game-state store, viz the cache <br>
 								* To enable socket connected to different servers to communicate, we need message-broker <br>
 								* Message queues could be used to ensure sequential execution and delayed timers. <br>
-								* For any system with multiple cores, its good to use cluster and ngnix with reverse proxy to ensure all cores are used.<br>
+								* For any system with multiple cores, it's good to use cluster and ngnix with reverse proxy to ensure all cores are used.<br>
 							</aside>
 					</section>
 				</section>
@@ -550,7 +550,7 @@ console.log(chess.in_stalemate());
 						* But the latest version of node have workers to do the tasks, viz a great thing<br>
 						* Rust and golang could do computations much faster, so a rust executable script <br>
 						  can be called as an io operation and load on event loop can be minimized.<br>
-						* Real game use timers a lot, some cases its okay to store timestamp in database <br>
+						* Real game use timers a lot, some cases it's okay to store timestamp in database <br>
 						  other cases we might need timer servers, to trigger delayed actions.
 					</aside>
 				</section>
@@ -558,11 +558,11 @@ console.log(chess.in_stalemate());
 				<section data-transition="concave" data-background-transition="zoom">
 					<h2>Suggestions 🏂</h2>
 					<ul>
-						<li>forget es5 approach.</li>
-						<li>es6 / typescript will be lifesavers.</li>
-						<li>Security with tokens</li>
-						<li>rather than writing from scratch, you could use frameworks.[But don't expect a long term support]</li>
-						<li>do profiling to find out time consuming functions.</li>
+						<li>Forget ES5 approach.</li>
+						<li>ES6 / Typescript will be lifesavers.</li>
+						<li>Security with tokens.</li>
+						<li>Rather than writing from scratch, you could use frameworks.[But don't expect a long term support].</li>
+						<li>Do profiling to find out time consuming functions.</li>
 						<li>For production use game engines.</li>
 					</ul>	
 					<aside class="notes">
