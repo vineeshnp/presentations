@@ -168,7 +168,7 @@
 					</section>
 
 					<section data-transition="concave" data-background-transition="convex">
-						<h2>Sample Game State</h2>
+						<h2>Sample Game State  🏹</h2>
 						<pre><code class="hljs" data-trim contenteditable>
 gameState = {
 	players: {
@@ -218,7 +218,7 @@ gameState = {
 						</aside>
 					</section>
 					<section data-transition="convex" data-background-transition="concave">
-							<h2>Socket Backend</h2>
+							<h2>Socket Backend   🎙</h2>
 							<pre><code class="hljs" data-trim contenteditable>
 const app = require('express')();
 const http = require('http').Server(app);
@@ -242,7 +242,7 @@ http.listen(port, () => {
 						</section>
 
 						<section data-transition="convex" data-background-transition="concave">
-								<h2>Socket Front End</h2>
+								<h2>Socket Front End   📻</h2>
 								<pre><code class="hljs" data-trim contenteditable>
 &lt;script&gt; src="https://cdn.socket.io/socket.io-1.2.0.js">&lt;/script&gt;							
 &lt;script&gt;
@@ -318,7 +318,7 @@ http.listen(port, () => {
 							</aside>
 						</section>
 						<section>
-								<h2>Joining Room</h2>
+								<h2>Joining Room 🏃‍♂️ </h2>
 								<pre><code class="hljs" data-trim contenteditable>
 /**
  * Front end code
@@ -343,7 +343,7 @@ io.on('connection', (socket) => {
 							</section>
 	
 							<section data-transition="convex" data-background-transition="concave">
-									<h2>Emitting to a room</h2>
+									<h2>Emitting to a room  📡</h2>
 									<pre><code class="hljs" data-trim contenteditable>
 /**
  * Backend code
@@ -367,7 +367,7 @@ io.to('room1').emit('data', {data : 0});
 							</section>
 
 							<section data-transition="convex" data-background-transition="concave">
-									<h3> Move validation with library. </h3>
+									<h3> Move validation with library.  📚</h3>
 									<p>Lets look at chess library.</p> 
 									
 									<pre><code class="hljs" data-trim contenteditable>
@@ -383,7 +383,7 @@ io.to('room1').emit('data', {data : 0});
 							</section>
 
 							<section data-transition="convex" data-background-transition="concave">
-									<h3> Initiating library </h3>
+									<h3> Initiating library  📕</h3>
 									<pre><code class="hljs" data-trim contenteditable>
 const Chess = require('chess.js').Chess;
 const chess = new Chess();
@@ -412,7 +412,7 @@ console.log(chess.ascii());
 							</section>
 
 							<section data-transition="convex" data-background-transition="concave">
-									<h3> Making moves </h3>
+									<h3> Making moves 🚴‍♀️ </h3>
 									<pre><code class="hljs" data-trim contenteditable>
 /**
  * moves can be triggered in different ways
@@ -430,7 +430,7 @@ chess.move({from : 'f8', to : 'a3' }) // Moving the bishop
 							</section>
 
 							<section data-transition="convex" data-background-transition="concave">
-									<h3> Validity of moves. </h3>
+									<h3> Validity of moves.  🚧</h3>
 									<pre><code class="hljs" data-trim contenteditable>
 /**
  * Checking the validity of the move
@@ -454,7 +454,7 @@ null
 							</section>
 
 							<section data-transition="convex" data-background-transition="concave">
-									<h2> Check! ? </h2>
+									<h2> Check! ? 🚔</h2>
 									<pre><code class="hljs" data-trim contenteditable>
 /**
  * Check if the game is in check state
@@ -474,7 +474,7 @@ console.log(chess.in_checkmate());
 							</section>
 
 							<section data-transition="convex" data-background-transition="concave">
-									<h2> Further! ? </h2>
+									<h2> Further! ?  🚀</h2>
 									<p>Chess have lots of situations like.<br>
 											* Draw<br>
 											* Settlement<br>
